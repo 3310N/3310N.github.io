@@ -100,14 +100,16 @@
   }
   const LINKS = [["GitHub", "gh", C.links.github], ["LinkedIn", "li", C.links.linkedin], ["Instagram", "ig", C.links.instagram]];
   function contactHTML() {
-    return `<h2>Get in touch</h2><p>Recruiters, engineering teams and clients — the quickest way is e-mail or LinkedIn.</p>
-      <div class="files" style="grid-template-columns:repeat(3,1fr);margin:8px 0 14px">${LINKS.map(([n, i, u]) => `<a class="file" href="${esc(u)}" target="_blank" rel="noopener">${SVG[i]}<span>${n}</span></a>`).join("")}</div>
-      <p><button class="go alt" id="rv">Reveal e-mail</button> <span id="rvout"></span></p>
+    const em = C.links.email;
+    return `<h2>Get in touch</h2><p>Recruiters, engineering teams and clients — reach me on LinkedIn or GitHub${em ? ", or by e-mail" : ""}.</p>
+      <div class="files" style="grid-template-columns:repeat(3,1fr);margin:8px 0 14px">${LINKS.map(([n, i, u]) => `<a class="file" href="${esc(u)}" target="_blank" rel="noopener">${SVG[i]}<span>${n}</span></a>`).join("")}</div>`
+      + (em ? `<p><button class="go alt" id="rv">Reveal e-mail</button> <span id="rvout"></span></p>
       <h3>Message</h3><form class="form" id="cf"><label>Your name<input name="n" required></label><label>Your e-mail<input name="e" type="email" required></label><label>Message<textarea name="m" rows="4" required></textarea></label>
-      <div><button class="go" type="submit">Send via your mail app</button> <small style="color:var(--mut)">No server involved — this opens your e-mail client.</small></div></form>`;
+      <div><button class="go" type="submit">Send via your mail app</button> <small style="color:var(--mut)">No server involved — this opens your e-mail client.</small></div></form>` : `<p style="color:var(--mut)">A direct e-mail address isn't published on this site. Please send a LinkedIn message.</p>`);
   }
   function contactAfter(win) {
     const em = C.links.email;
+    if (!em) return;
     $("#rv", win).onclick = () => { $("#rvout", win).innerHTML = em ? `<a href="mailto:${esc(em)}" style="color:var(--acc)">${esc(em)}</a>` : "Not published yet."; };
     $("#cf", win).onsubmit = e => {
       e.preventDefault(); if (!em) return;

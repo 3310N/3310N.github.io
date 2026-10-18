@@ -30,12 +30,12 @@ const CONTENT = {
     github: GH,
     linkedin: "https://www.linkedin.com/in/el-mahdi-masbah/",
     instagram: "https://www.instagram.com/el_mahdi_masbah/",
-    email: "mehdimasbah@gmail.com",   // shown only when the visitor clicks "Reveal email"
+    email: "",                // not published; set later to enable the e-mail reveal + contact form
   },
   cv: "",                     // e.g. "docs/cv.pdf" — enables the download button (CV contains a phone number: check first)
   projects: [
     { id: "mydev-hr", name: "MyDev — HR self-service portal", category: "backend", status: "Ongoing", verified: true, private: true,
-      summary: "HR self-service portal for a client (SRM), built as Java 21 / Spring Boot 3 microservices with an Angular 17 front end. I am the main contributor.",
+      summary: "HR self-service portal for an enterprise client, built as Java 21 / Spring Boot 3 microservices with an Angular 17 front end. I am the main contributor.",
       problem: "Employees and HR need one portal for payslips, company news, service notes, documents and certificates, leave and authorisations.",
       solution: "Workshops with the client to frame needs, then iterative delivery: demos, acceptance testing with business teams, adjustments and documentation.",
       architecture: ["Angular 17 front end", "Spring Boot 3 microservices", "Java 21"],
