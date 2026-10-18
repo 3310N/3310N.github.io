@@ -3,59 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>El Mahdi Masbah — Software Engineer</title>
-<meta name="description" content="Portfolio of El Mahdi Masbah, software engineer from Morocco: web, mobile, AI and full-stack projects.">
+<title>El Mahdi Masbah — Portfolio OS</title>
+<meta name="description" content="Interactive portfolio of El Mahdi Masbah, software engineer from Morocco, presented as a desktop operating system.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="nav">
-    <strong>mehdimasbah.me</strong>
-    <nav><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
-  </header>
-
-  <div class="hero">
-    <h1>Hi, I'm El Mahdi Masbah.<br>I build software.</h1>
-    <p>Software engineer from Morocco, building full-stack web and mobile apps and AI-powered tools.</p>
-    <a class="btn" href="#projects">See my work</a>
-    <a class="btn alt" href="https://github.com/3310N" target="_blank" rel="noopener">GitHub</a>
+<div id="stage">
+  <div id="rig">
+    <div id="monitor">
+      <div id="bezel">
+        <div id="screen">
+          <div id="off"><button id="power">⏻ Power on</button></div>
+          <div id="boot" hidden><div class="logo">M<span>OS</span></div><div class="bar"><i></i></div><small>Starting MahdiOS…</small></div>
+          <div id="os" hidden>
+            <div id="wall">
+              <svg viewBox="0 0 1280 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a5e"/><stop offset=".45" stop-color="#7a4f9c"/><stop offset=".75" stop-color="#f0907a"/><stop offset="1" stop-color="#ffd29a"/></linearGradient>
+                  <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d8"/><stop offset=".25" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ff9f7a" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a4f8f"/><stop offset="1" stop-color="#3b2b63"/></linearGradient>
+                  <linearGradient id="m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3070"/><stop offset="1" stop-color="#21204a"/></linearGradient>
+                  <linearGradient id="m3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2250"/><stop offset="1" stop-color="#0d1233"/></linearGradient>
+                  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .07 0"/></filter>
+                </defs>
+                <rect width="1280" height="800" fill="url(#sky)"/>
+                <g fill="#fff" opacity=".8" id="stars"></g>
+                <circle cx="880" cy="470" r="260" fill="url(#sun)"/>
+                <circle cx="880" cy="470" r="46" fill="#fff3d0"/>
+                <path d="M0 520 L140 420 L240 500 L380 380 L520 510 L640 440 L780 520 L900 430 L1040 520 L1180 410 L1280 480 V800 H0Z" fill="url(#m1)"/>
+                <path d="M0 600 L120 520 L260 610 L420 500 L560 620 L720 540 L880 630 L1040 530 L1180 610 L1280 560 V800 H0Z" fill="url(#m2)"/>
+                <path d="M0 700 L160 630 L320 710 L520 640 L700 720 L900 650 L1100 730 L1280 670 V800 H0Z" fill="url(#m3)"/>
+                <rect width="1280" height="800" filter="url(#grain)"/>
+              </svg>
+            </div>
+            <div id="menubar"><b class="logo">◆</b><b id="appname">Finder</b><span>File</span><span>View</span><span>Go</span><span>Help</span><i></i><button id="zoombtn" title="Toggle desk view">⤢ Desk view</button><span id="clock"></span></div>
+            <div id="icons"></div>
+            <div id="windows"></div>
+            <div id="dock"></div>
+          </div>
+          <div class="glare"></div>
+        </div>
+      </div>
+      <div id="led"></div>
+    </div>
+    <div id="neck"></div><div id="base"></div>
+    <div id="desk"></div><div id="glow"></div><div id="shadow"></div>
+    <div id="keyboard"></div>
+    <div id="mouse"><div class="body"><i class="btnl"></i><i class="btnr"></i><i class="wheel"></i></div><div class="cable"></div></div>
   </div>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid" id="project-grid"></div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills" id="skill-list"></div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      <a href="https://www.linkedin.com/in/el-mahdi-masbah/" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="https://github.com/3310N" target="_blank" rel="noopener">GitHub</a> ·
-      <a href="https://www.instagram.com/el_mahdi_masbah/" target="_blank" rel="noopener">Instagram</a>
-    </p>
-  </section>
-
-  <footer>© <span id="year"></span> El Mahdi Masbah</footer>
+  <div id="hint">Move your mouse — then power it on</div>
 </div>
-
+<noscript><p style="color:#fff;padding:2rem">El Mahdi Masbah — software engineer. GitHub: <a href="https://github.com/3310N">github.com/3310N</a></p></noscript>
+<script src="anime.min.js"></script>
 <script src="projects.js"></script>
-<script>
-const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-document.getElementById("project-grid").innerHTML = PROJECTS.map(p => `
-  <article class="card">
-    <h3>${esc(p.name)}</h3>
-    <p>${esc(p.desc)}</p>
-    <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
-    <a href="https://github.com/3310N/${encodeURIComponent(p.repo)}" target="_blank" rel="noopener">View on GitHub →</a>
-  </article>`).join("");
-const SKILLS = ["JavaScript","TypeScript","React","Angular","Vue","Next.js","Node.js","Python","Java / Spring","C#/.NET","PHP / Symfony","Flutter","Django","FastAPI","SQL","MongoDB","Docker","Git","Linux","AI / RAG"];
-document.getElementById("skill-list").innerHTML = SKILLS.map(s => `<span>${s}</span>`).join("");
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+<script src="os.js"></script>
 </body>
 </html>
