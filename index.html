@@ -3,13 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>El Mahdi Masbah — Portfolio OS</title>
-<meta name="description" content="Interactive portfolio of El Mahdi Masbah, software engineer from Morocco, presented as a desktop operating system.">
+<title>El Mahdi Masbah — Software Engineer · Automation &amp; AI</title>
+<meta name="description" content="Portfolio of El Mahdi Masbah, software engineer specialised in automation, integrations and applied AI, based in Casablanca. Explore projects, experience and skills in an interactive desktop OS.">
+<link rel="canonical" href="https://mehdimasbah.me/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="El Mahdi Masbah — Software Engineer · Automation & AI">
+<meta property="og:description" content="Interactive portfolio: projects, experience, skills and contact.">
+<meta property="og:url" content="https://mehdimasbah.me/">
+<meta name="theme-color" content="#0b0d14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a84ff'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EM%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"El Mahdi Masbah","jobTitle":"Software Engineer — Automation & AI","url":"https://mehdimasbah.me/","sameAs":["https://github.com/3310N","https://www.linkedin.com/in/el-mahdi-masbah/"],"address":{"@type":"PostalAddress","addressLocality":"Casablanca","addressCountry":"MA"}}</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="stage">
+<div id="loader" role="status"><div class="spin"></div><span>Loading workspace…</span></div>
+
+<div id="stage" aria-label="3D desk scene with an interactive computer">
   <div id="rig">
+    <div id="room">
+      <div id="sky"><div id="sun"></div><div id="stars"></div><svg id="city" viewBox="0 0 2000 700" preserveAspectRatio="none"></svg><div id="rain"></div></div>
+      <div id="frame"><i></i><i></i></div>
+      <div id="sill"></div>
+    </div>
     <div id="monitor">
       <div id="bezel">
         <div id="screen">
@@ -19,27 +34,42 @@
             <div id="wall">
               <svg viewBox="0 0 1280 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <defs>
-                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a5e"/><stop offset=".45" stop-color="#7a4f9c"/><stop offset=".75" stop-color="#f0907a"/><stop offset="1" stop-color="#ffd29a"/></linearGradient>
-                  <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d8"/><stop offset=".25" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ff9f7a" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a5e"/><stop offset=".45" stop-color="#7a4f9c"/><stop offset=".75" stop-color="#f0907a"/><stop offset="1" stop-color="#ffd29a"/></linearGradient>
+                  <radialGradient id="wsun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d8"/><stop offset=".25" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ff9f7a" stop-opacity="0"/></radialGradient>
                   <linearGradient id="m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a4f8f"/><stop offset="1" stop-color="#3b2b63"/></linearGradient>
                   <linearGradient id="m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3070"/><stop offset="1" stop-color="#21204a"/></linearGradient>
                   <linearGradient id="m3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2250"/><stop offset="1" stop-color="#0d1233"/></linearGradient>
                   <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .07 0"/></filter>
                 </defs>
-                <rect width="1280" height="800" fill="url(#sky)"/>
-                <g fill="#fff" opacity=".8" id="stars"></g>
-                <circle cx="880" cy="470" r="260" fill="url(#sun)"/>
-                <circle cx="880" cy="470" r="46" fill="#fff3d0"/>
+                <rect width="1280" height="800" fill="url(#wsky)"/>
+                <g fill="#fff" opacity=".8" id="wstars"></g>
+                <circle cx="880" cy="470" r="260" fill="url(#wsun)"/><circle cx="880" cy="470" r="46" fill="#fff3d0"/>
                 <path d="M0 520 L140 420 L240 500 L380 380 L520 510 L640 440 L780 520 L900 430 L1040 520 L1180 410 L1280 480 V800 H0Z" fill="url(#m1)"/>
                 <path d="M0 600 L120 520 L260 610 L420 500 L560 620 L720 540 L880 630 L1040 530 L1180 610 L1280 560 V800 H0Z" fill="url(#m2)"/>
                 <path d="M0 700 L160 630 L320 710 L520 640 L700 720 L900 650 L1100 730 L1280 670 V800 H0Z" fill="url(#m3)"/>
                 <rect width="1280" height="800" filter="url(#grain)"/>
               </svg>
             </div>
-            <div id="menubar"><b class="logo">◆</b><b id="appname">Finder</b><span>File</span><span>View</span><span>Go</span><span>Help</span><i></i><button id="zoombtn" title="Toggle desk view">⤢ Desk view</button><span id="clock"></span></div>
-            <div id="icons"></div>
+            <div id="icons" role="list"></div>
+            <div id="widgets">
+              <div class="wg wclock"><b id="wtime"></b><span id="wdate"></span></div>
+              <div class="wg wterm"><div class="wh">Quick terminal</div><div class="wl">visitor@mah-desktop:~$ explore --portfolio</div><div class="wl dim">Welcome. Select a folder to begin.</div><label class="wi">$ <input id="wq" placeholder="help" spellcheck="false" autocomplete="off" aria-label="Quick terminal"></label></div>
+            </div>
             <div id="windows"></div>
-            <div id="dock"></div>
+            <div id="start" hidden>
+              <input id="sq" placeholder="Search apps, projects, skills…" aria-label="Search" autocomplete="off" spellcheck="false">
+              <div id="sres"></div>
+              <div class="sf"><span>El Mahdi Masbah</span><button id="flatbtn" title="Switch to a conventional portfolio page">Plain view</button></div>
+            </div>
+            <div id="panel" hidden></div>
+            <div id="taskbar">
+              <button id="startbtn" aria-label="Start menu" title="Start (Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 3h8.500v8.500H3zM12.500 3H21v8.500h-8.500zM3 12.500h8.500V21H3zM12.500 12.500H21V21h-8.500z"/></svg></button>
+              <button id="searchbtn" class="sbox">⌕ Search</button>
+              <div id="tasks"></div>
+              <button id="zoombtn" title="Toggle desk view">⤢ Desk view</button>
+              <button id="wifi" aria-label="Network status" title="Network"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 12.500a10 10 0 0 1 14 0M8.500 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.500" r="1" fill="currentColor"/></svg></button>
+              <button id="clockbtn" aria-label="Calendar"><span id="tclock"></span></button>
+            </div>
           </div>
           <div class="glare"></div>
         </div>
@@ -49,13 +79,17 @@
     <div id="neck"></div><div id="base"></div>
     <div id="desk"></div><div id="glow"></div><div id="shadow"></div>
     <div id="keyboard"></div>
+    <div id="mug"><i></i></div>
     <div id="mouse"><div class="body"><i class="btnl"></i><i class="btnr"></i><i class="wheel"></i></div><div class="cable"></div></div>
   </div>
   <div id="hint">Move your mouse — then power it on</div>
 </div>
-<noscript><p style="color:#fff;padding:2rem">El Mahdi Masbah — software engineer. GitHub: <a href="https://github.com/3310N">github.com/3310N</a></p></noscript>
+
+<main id="flat" hidden></main>
+
+<noscript><main style="color:#eee;font:16px system-ui;padding:2rem;max-width:720px;margin:auto"><h1>El Mahdi Masbah</h1><p>Software Engineer · Automation &amp; AI — Casablanca, Morocco.</p><p><a style="color:#8fb0ff" href="https://github.com/3310N">GitHub</a> · <a style="color:#8fb0ff" href="https://www.linkedin.com/in/el-mahdi-masbah/">LinkedIn</a></p><p>Enable JavaScript to explore the interactive portfolio.</p></main></noscript>
 <script src="anime.min.js"></script>
-<script src="projects.js"></script>
+<script src="content.js"></script>
 <script src="os.js"></script>
 </body>
 </html>
