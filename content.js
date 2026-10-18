@@ -35,7 +35,7 @@ const CONTENT = {
   cv: "",                     // e.g. "docs/cv.pdf" — enables the download button (CV contains a phone number: check first)
   projects: [
     { id: "mydev-hr", name: "MyDev — HR self-service portal", category: "backend", status: "Ongoing", verified: true, private: true,
-      summary: "HR self-service portal for an enterprise client, built as Java / Spring Boot microservices with an Angular front end. I am the main contributor.",
+      summary: "HR self-service portal for the client SRM, built as Java / Spring Boot microservices with an Angular front end. I am the main contributor.",
       problem: "Employees and HR need one portal for payslips, company news, service notes, documents and certificates, leave and authorisations.",
       solution: "Workshops with the client to frame needs, then iterative delivery: demos, acceptance testing with business teams, adjustments and documentation.",
       architecture: ["Angular front end", "Spring Boot microservices", "Java"],
