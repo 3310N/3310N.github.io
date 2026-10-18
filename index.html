@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El Mahdi Masbah — Software Engineer</title>
+<meta name="description" content="Portfolio of El Mahdi Masbah, software engineer from Morocco: web, mobile, AI and full-stack projects.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <strong>mehdimasbah.me</strong>
+    <nav><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>Hi, I'm El Mahdi Masbah.<br>I build software.</h1>
+    <p>Software engineer from Morocco, building full-stack web and mobile apps and AI-powered tools.</p>
+    <a class="btn" href="#projects">See my work</a>
+    <a class="btn alt" href="https://github.com/3310N" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid" id="project-grid"></div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills" id="skill-list"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      <a href="https://www.linkedin.com/in/el-mahdi-masbah/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/3310N" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://www.instagram.com/el_mahdi_masbah/" target="_blank" rel="noopener">Instagram</a>
+    </p>
+  </section>
+
+  <footer>© <span id="year"></span> El Mahdi Masbah</footer>
+</div>
+
+<script src="projects.js"></script>
+<script>
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("project-grid").innerHTML = PROJECTS.map(p => `
+  <article class="card">
+    <h3>${esc(p.name)}</h3>
+    <p>${esc(p.desc)}</p>
+    <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+    <a href="https://github.com/3310N/${encodeURIComponent(p.repo)}" target="_blank" rel="noopener">View on GitHub →</a>
+  </article>`).join("");
+const SKILLS = ["JavaScript","TypeScript","React","Angular","Vue","Next.js","Node.js","Python","Java / Spring","C#/.NET","PHP / Symfony","Flutter","Django","FastAPI","SQL","MongoDB","Docker","Git","Linux","AI / RAG"];
+document.getElementById("skill-list").innerHTML = SKILLS.map(s => `<span>${s}</span>`).join("");
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
