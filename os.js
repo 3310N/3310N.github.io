@@ -229,12 +229,12 @@
   function detail(p) {
     const L = p.links || {};
     return `<h2>${esc(p.name)} ${badge(p)}</h2><p>${esc(p.summary)}</p>
-      <div class="chips"><span>${esc(CATS[p.category] || p.category)}</span>${p.private ? "<span>Private repository</span>" : ""}</div>
+      <div class="chips"><span>${esc(CATS[p.category] || p.category)}</span></div>
       ${section("Overview", (p.problem ? `<p><b>Problem.</b> ${esc(p.problem)}</p>` : "") + (p.solution ? `<p><b>Solution.</b> ${esc(p.solution)}</p>` : ""))}
       ${section("Architecture", p.architecture ? `<div class="flow">${p.architecture.map(x => `<b>${esc(x)}</b>`).join("<em>→</em>")}</div>` : "")}
       ${section("Technical stack", p.stack && p.stack.length ? `<dl class="kv">${p.stack.map(s => `<dt>${esc(s.name)}</dt><dd>${esc(s.role || "")}</dd>`).join("")}</dl>` : "")}
       ${section("Engineering decisions", ul(p.decisions))}${section("Evidence", ul(p.evidence))}${section("Results", ul(p.results))}
-      <h3>Links</h3><p>${L.repo ? `<a class="go" href="${esc(L.repo)}" target="_blank" rel="noopener">Source code ↗</a> ` : ""}${L.demo ? `<a class="go alt" href="${esc(L.demo)}" target="_blank" rel="noopener">Live demo ↗</a> ` : ""}${!L.repo && !L.demo ? "<em>No public links (private or client work).</em>" : ""}</p>`;
+      ${L.demo ? `<h3>Links</h3><p><a class="go alt" href="${esc(L.demo)}" target="_blank" rel="noopener">Live demo ↗</a></p>` : ""}`;
   }
 
   /* ================= window manager ================= */
@@ -431,7 +431,7 @@
     const p = C.profile, f = $("#flat");
     f.innerHTML = `<div class="wrap"><header><strong>mehdimasbah.me</strong><nav><a href="#f-projects">Projects</a><a href="#f-exp">Experience</a><a href="#f-skills">Skills</a><a href="#f-contact">Contact</a> <button class="btn" id="to3d">Open 3D desktop</button></nav></header>
       <h1>${esc(p.name)}</h1><p style="font-size:1.15rem">${esc(p.title)} · ${esc(p.location)}</p><p>${esc(p.summary)}</p><div class="chips">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
-      <h2 id="f-projects">Projects</h2>${C.projects.map(x => `<div class="card"><h3>${esc(x.name)} <span class="badge">${esc(x.status)}</span>${x.verified ? "" : ' <span class="badge">Draft</span>'}</h3><p>${esc(x.summary)}</p><div class="chips">${(x.stack || []).map(s => `<span>${esc(s.name)}</span>`).join("")}</div>${x.links && x.links.repo ? `<a href="${esc(x.links.repo)}" target="_blank" rel="noopener">Source ↗</a> ` : ""}${x.links && x.links.demo ? `<a href="${esc(x.links.demo)}" target="_blank" rel="noopener">Demo ↗</a>` : ""}</div>`).join("")}
+      <h2 id="f-projects">Projects</h2>${C.projects.map(x => `<div class="card"><h3>${esc(x.name)} <span class="badge">${esc(x.status)}</span>${x.verified ? "" : ' <span class="badge">Draft</span>'}</h3><p>${esc(x.summary)}</p><div class="chips">${(x.stack || []).map(s => `<span>${esc(s.name)}</span>`).join("")}</div>${x.links && x.links.demo ? `<a href="${esc(x.links.demo)}" target="_blank" rel="noopener">Demo ↗</a>` : ""}</div>`).join("")}
       <h2 id="f-exp">Experience</h2>${C.experience.map(e => `<div class="card"><h3>${esc(e.role)} — ${esc(e.org)}</h3><p>${esc(e.period)}</p><ul>${e.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}
       <h2>Education & languages</h2>${p.education.map(e => `<p><b>${esc(e.school)}</b> (${esc(e.years)}) — ${esc(e.degree)}</p>`).join("")}<p>${p.languages.map(esc).join(" · ")}</p>
       <h2 id="f-skills">Skills</h2>${C.skills.map(s => `<p><b>${esc(s.group)}</b></p><div class="chips">${s.items.map(i => `<span>${esc(i)}</span>`).join("")}</div>`).join("")}
