@@ -112,7 +112,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix
 .icon svg{width:58px;height:58px;filter:drop-shadow(0 4px 6px #0007)}
 .icon:hover{background:rgba(255,255,255,.12)}
 .icon.sel,.icon:focus-visible{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4)}
-#widgets{position:absolute;right:20px;top:18px;width:290px;display:flex;flex-direction:column;gap:12px}
+#widgets{position:absolute;right:20px;top:60px;width:290px;display:flex;flex-direction:column;gap:12px}
 .wg{background:rgba(20,22,34,.55);backdrop-filter:blur(24px) saturate(1.4);border:1px solid var(--line);border-radius:16px;padding:14px 16px;color:#fff;box-shadow:0 12px 30px #0005}
 .wclock b{display:block;font-size:44px;line-height:1;font-weight:300;letter-spacing:-.02em}.wclock span{color:#d6dbec}
 .wh{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aab0c4;margin-bottom:6px}
