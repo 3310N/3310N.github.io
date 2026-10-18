@@ -209,3 +209,50 @@ body.flat-on{overflow:auto}body.flat-on #stage{display:none}
 body.reduce *,body.reduce *::before,body.reduce *::after{animation:none!important;transition:none!important}
 body.lowq .win,body.lowq #taskbar,body.lowq .wg,body.lowq #start,body.lowq #panel,body.lowq #menubar{backdrop-filter:none!important}
 body.lowq #rain,body.lowq #stars,body.lowq .glare{display:none}
+
+/* ---------- quick view button ---------- */
+#quick{position:fixed;top:12px;right:12px;z-index:9000;font:600 13px/1 inherit;font-family:inherit;color:#fff;background:rgba(20,22,34,.72);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 16px;box-shadow:0 8px 24px #0006}
+#quick:hover,#quick:focus-visible{border-color:var(--acc);outline:0;background:rgba(10,132,255,.55)}
+body.flat-on #quick{display:none}
+
+/* ---------- phone / portrait layout: the OS fills the screen ---------- */
+body.mobile{overflow:hidden}
+body.mobile #stage{perspective:none;display:block}
+body.mobile #rig{position:fixed;inset:0;width:100%;height:100%;transform:none!important}
+body.mobile #rig>*:not(#monitor),body.mobile #hint,body.mobile #led,body.mobile .glare,body.mobile #zoombtn,body.mobile .rz,body.mobile .dot.m,body.mobile .dot.x,body.mobile #off,body.mobile #boot{display:none!important}
+body.mobile #monitor{position:fixed;inset:0;left:0;top:0;width:100%;height:100%}
+body.mobile #bezel{padding:0;border-radius:0;box-shadow:none;background:none;width:100%;height:100%}
+body.mobile #bezel::before{display:none}
+body.mobile #screen{width:100%;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+body.mobile #os{padding-top:env(safe-area-inset-top)}
+body.mobile #widgets{left:16px;right:16px;top:58px;width:auto}
+body.mobile .wterm{display:none}
+body.mobile .wclock b{font-size:38px}
+body.mobile #icons{left:0;right:0;top:190px;grid-template-columns:repeat(3,1fr);grid-auto-rows:auto;gap:14px 4px;padding:0 14px;justify-items:center}
+body.mobile .icon{width:100%;padding:8px 2px;font-size:13px}
+body.mobile .icon svg{width:64px;height:64px}
+body.mobile #windows{inset:0 0 56px 0}
+body.mobile .win{left:0!important;top:0!important;width:100%!important;height:100%!important;border-radius:0;transform:none!important;min-width:0;min-height:0;border:0}
+body.mobile .tb{padding:12px 14px;gap:12px}
+body.mobile .tb .t{margin-right:0;text-align:left;font-size:15px}
+body.mobile .tb .dot.c{order:-1;width:30px;height:30px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);position:relative;display:block!important;flex:none}
+body.mobile .tb .dot.c::after{content:"‹";position:absolute;inset:0;display:grid;place-items:center;color:var(--txt);font-size:22px;line-height:1;padding-bottom:3px}
+body.mobile .wb{padding:16px}
+body.mobile #taskbar{height:56px;padding:0 10px calc(env(safe-area-inset-bottom)) 10px;gap:6px}
+body.mobile #taskbar>button{min-height:42px;min-width:42px;justify-content:center}
+body.mobile #tasks{display:none}
+body.mobile .sbox{flex:1;justify-content:flex-start}
+body.mobile #start{left:10px;right:10px;width:auto;bottom:64px}
+body.mobile #panel{right:10px;left:10px;width:auto;bottom:64px}
+body.mobile .ex-main{flex-direction:column}
+body.mobile .ex aside{width:auto;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px;gap:6px;flex:none}
+body.mobile .ex aside button{white-space:nowrap;flex:none}
+body.mobile .ex-bar{flex-wrap:wrap}body.mobile .crumb{flex:1 1 100%;order:3}
+body.mobile .ex-bar input{flex:1 1 40%}
+body.mobile .files{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
+body.mobile .term{font-size:12.5px}
+body.mobile #quick{top:max(12px,env(safe-area-inset-top))}
+@media (max-width:420px){body.mobile .icon svg{width:58px;height:58px}}
+#tqv{display:none!important}
+body.mobile #tqv{display:flex!important}
+body.mobile.has-win #quick{display:none}

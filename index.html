@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>El Mahdi Masbah — Software Engineer · Automation &amp; AI</title>
 <meta name="description" content="Portfolio of El Mahdi Masbah, software engineer specialised in automation, integrations and applied AI, based in Casablanca. Explore projects, experience and skills in an interactive desktop OS.">
 <link rel="canonical" href="https://mehdimasbah.me/">
@@ -18,6 +18,7 @@
 <body>
 <div id="loader" role="status"><div class="spin"></div><span>Loading workspace…</span></div>
 
+<button id="quick" type="button" title="Skip the 3D room and read the portfolio as a normal page">☰ Quick view</button>
 <div id="stage" aria-label="3D desk scene with an interactive computer">
   <div id="rig">
     <div id="room">
@@ -64,6 +65,7 @@
             <div id="panel" hidden></div>
             <div id="taskbar">
               <button id="startbtn" aria-label="Start menu" title="Start (Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 3h8.500v8.500H3zM12.500 3H21v8.500h-8.500zM3 12.500h8.500V21H3zM12.500 12.500H21V21h-8.500z"/></svg></button>
+              <button id="tqv" aria-label="Quick view" title="Quick view">☰</button>
               <button id="searchbtn" class="sbox">⌕ Search</button>
               <div id="tasks"></div>
               <button id="zoombtn" title="Toggle desk view">⤢ Desk view</button>

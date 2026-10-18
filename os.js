@@ -4,6 +4,8 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const C = CONTENT, W = 1280, H = 800;
+  const isMobile = () => innerWidth < 760 || (innerWidth < 1000 && innerHeight > innerWidth);
+  const MOBILE = isMobile();
   const open_ = u => u && window.open(u, "_blank", "noopener");
 
   /* ================= settings (persisted) ================= */
@@ -205,13 +207,13 @@
       crumb.innerHTML = `<a href="#" data-cat="all">/home/mahdi/projects</a>${st.cat === "all" ? "" : `/<a href="#" data-cat="${st.cat}">${st.cat}</a>`}${p ? "/" + esc(p.id) : ""}`;
       if (p) return (sec.innerHTML = detail(p));
       const a = list();
-      sec.innerHTML = a.length ? `<div class="files">${a.map(p => `<button class="file" data-id="${esc(p.id)}" title="${esc(p.summary)}">${SVG.doc(docColor(p))}<span>${esc(p.name)}</span>${badge(p)}</button>`).join("")}</div><p style="color:var(--mut);margin-top:14px;font-size:12px">${a.length} item${a.length > 1 ? "s" : ""} · double-click or press Enter to open</p>` : "<p>No projects match.</p>";
+      sec.innerHTML = a.length ? `<div class="files">${a.map(p => `<button class="file" data-id="${esc(p.id)}" title="${esc(p.summary)}">${SVG.doc(docColor(p))}<span>${esc(p.name)}</span>${badge(p)}</button>`).join("")}</div><p style="color:var(--mut);margin-top:14px;font-size:12px">${a.length} item${a.length > 1 ? "s" : ""} · ${MOBILE ? "tap" : "double-click or press Enter"} to open</p>` : "<p>No projects match.</p>";
     };
     const openProj = id => { st.proj = id; render(); sec.scrollTop = 0; };
     win.addEventListener("click", e => {
       const c = e.target.closest("[data-cat]"); if (c) { e.preventDefault(); st.cat = c.dataset.cat; st.proj = null; return render(); }
       if (e.target.closest("[data-act=up]")) { st.proj = null; return render(); }
-      const f = e.target.closest(".file"); if (f) { $$(".file", win).forEach(x => x.classList.remove("sel")); f.classList.add("sel"); }
+      const f = e.target.closest(".file"); if (f) { if (MOBILE) return openProj(f.dataset.id); $$(".file", win).forEach(x => x.classList.remove("sel")); f.classList.add("sel"); }
       const cp = e.target.closest("[data-id]:not(.file)"); if (cp) openProj(cp.dataset.id);
     });
     win.addEventListener("dblclick", e => { const f = e.target.closest(".file"); if (f) openProj(f.dataset.id); });
@@ -238,7 +240,9 @@
   const BODY = { about: aboutHTML, projects: explorerHTML, experience: experienceHTML, skills: skillsHTML, docs: docsHTML, contact: contactHTML, terminal: () => `<div class="term"></div>`, settings: settingsHTML, recycle: recycleHTML };
   const AFTER = { projects: explorerAfter, skills: skillsAfter, contact: contactAfter, terminal: terminalAfter, settings: settingsAfter };
   const scale = () => st.s || 1;
+  const winClass = () => document.body.classList.toggle("has-win", Object.values(wins).some(w => !w.min));
   function focusWin(k) {
+    winClass();
     Object.entries(wins).forEach(([id, w]) => { w.el.classList.toggle("active", id === k); w.task.classList.toggle("on", id === k && !w.min); });
     if (wins[k]) wins[k].el.style.zIndex = ++z;
   }
@@ -263,13 +267,13 @@
     focusWin(k);
     anime({ targets: el, scale: [.88, 1], opacity: [0, 1], duration: 320, easing: "easeOutBack" });
   }
-  function closeApp(k) { const w = wins[k]; if (!w) return; delete wins[k]; w.task.remove(); anime({ targets: w.el, scale: .92, opacity: 0, duration: 180, easing: "easeInQuad", complete: () => w.el.remove() }); }
-  function minimize(k) { const w = wins[k]; w.min = true; w.el.classList.remove("active"); w.task.classList.remove("on"); anime({ targets: w.el, translateY: 90, scale: .85, opacity: 0, duration: 220, easing: "easeInQuad", complete: () => (w.el.style.display = "none") }); }
+  function closeApp(k) { const w = wins[k]; if (!w) return; delete wins[k]; winClass(); w.task.remove(); anime({ targets: w.el, scale: .92, opacity: 0, duration: 180, easing: "easeInQuad", complete: () => w.el.remove() }); }
+  function minimize(k) { const w = wins[k]; w.min = true; winClass(); w.el.classList.remove("active"); w.task.classList.remove("on"); anime({ targets: w.el, translateY: 90, scale: .85, opacity: 0, duration: 220, easing: "easeInQuad", complete: () => (w.el.style.display = "none") }); }
   function restore(k) { const w = wins[k]; w.min = false; w.el.style.display = "flex"; anime({ targets: w.el, translateY: 0, scale: 1, opacity: 1, duration: 240, easing: "easeOutQuad" }); }
   function toggleMax(k) { const w = wins[k], e = w.el; if (!w.max) { w.prev = e.style.cssText; Object.assign(e.style, { left: "0", top: "0", width: W + "px", height: H - 44 + "px" }); } else e.style.cssText = w.prev; w.max = !w.max; e.style.zIndex = ++z; }
   function drag(el, handle, k) {
     handle.addEventListener("pointerdown", e => {
-      if (e.target.closest(".dot") || wins[k].max) return;
+      if (MOBILE || e.target.closest(".dot") || wins[k].max) return;
       const sc = scale(), sx = e.clientX, sy = e.clientY, ox = el.offsetLeft, oy = el.offsetTop;
       handle.setPointerCapture(e.pointerId); handle.style.cursor = "grabbing";
       const mv = ev => { el.style.left = Math.max(-el.offsetWidth + 90, Math.min(W - 90, ox + (ev.clientX - sx) / sc)) + "px"; el.style.top = Math.max(0, Math.min(H - 110, oy + (ev.clientY - sy) / sc)) + "px"; };
@@ -279,7 +283,7 @@
   }
   function resize(el, h, k) {
     h.addEventListener("pointerdown", e => {
-      if (wins[k].max) return; e.stopPropagation(); focusWin(k);
+      if (MOBILE || wins[k].max) return; e.stopPropagation(); focusWin(k);
       const sc = scale(), sx = e.clientX, sy = e.clientY, ow = el.offsetWidth, oh = el.offsetHeight;
       h.setPointerCapture(e.pointerId);
       const mv = ev => { el.style.width = Math.max(340, Math.min(W - el.offsetLeft, ow + (ev.clientX - sx) / sc)) + "px"; el.style.height = Math.max(220, Math.min(H - 44 - el.offsetTop, oh + (ev.clientY - sy) / sc)) + "px"; };
@@ -293,7 +297,7 @@
   function buildDesktop() {
     $("#icons").innerHTML = DESK.filter(k => k !== "recycle").map(k => `<div class="icon" role="listitem" tabindex="0" data-app="${k}" aria-label="${APPS[k].title} (double-click or press Enter)" title="${APPS[k].path}">${SVG[APPS[k].ico]}<span>${APPS[k].title}</span></div>`).join("")
       + `<div class="icon" role="listitem" tabindex="0" data-app="recycle" aria-label="Recycle Bin" title="/trash/">${SVG.recycle}<span>Recycle Bin</span></div>`;
-    $("#icons").addEventListener("click", e => { const i = e.target.closest(".icon"); if (!i) return; $$(".icon").forEach(x => x.classList.remove("sel")); i.classList.add("sel"); });
+    $("#icons").addEventListener("click", e => { const i = e.target.closest(".icon"); if (!i) return; if (MOBILE) return fire(i.dataset.app); $$(".icon").forEach(x => x.classList.remove("sel")); i.classList.add("sel"); });
     $("#icons").addEventListener("dblclick", e => { const i = e.target.closest(".icon"); if (i) fire(i.dataset.app); });
     $("#icons").addEventListener("keydown", e => { const i = e.target.closest(".icon"); if (i && e.key === "Enter") fire(i.dataset.app); });
     $("#os").addEventListener("pointerdown", e => { if (!e.target.closest(".icon,#start,#startbtn,#searchbtn,#panel,#wifi,#clockbtn")) { $$(".icon").forEach(x => x.classList.remove("sel")); closeMenus(); } });
@@ -413,6 +417,13 @@
     $("#power").focus && setTimeout(() => $("#power").focus({ preventScroll: true }), 1700);
   }
 
+  function initMobile() {
+    $("#off").hidden = true; $("#boot").hidden = true; $("#os").hidden = false; booted = true; applySettings();
+    anime({ targets: "#icons .icon", translateY: [18, 0], opacity: [0, 1], delay: anime.stagger(50), duration: 450, easing: "easeOutCubic" });
+    anime({ targets: ".wg", opacity: [0, 1], translateY: [-10, 0], duration: 500, easing: "easeOutCubic" });
+  }
+  const startUI = () => { sceneReady = true; document.body.classList.toggle("mobile", MOBILE); MOBILE ? initMobile() : initScene(); applySettings(); };
+
   /* ================= conventional (flat) view ================= */
   function renderFlat() {
     const p = C.profile, f = $("#flat");
@@ -427,15 +438,16 @@
   }
   function setFlat(on) {
     S.flat = on; save(); document.body.classList.toggle("flat-on", on); $("#flat").hidden = !on;
-    if (on) { renderFlat(); scrollTo(0, 0); } else if (!sceneReady) { sceneReady = true; initScene(); applySettings(); }
+    if (on) { renderFlat(); scrollTo(0, 0); } else if (!sceneReady) startUI();
   }
   let sceneReady = false;
 
   /* ================= start ================= */
   buildDesktop(); buildChrome(); tick(); setInterval(tick, 20000);
-  const wantFlat = S.flat === null ? innerWidth < 760 : S.flat;
-  if (wantFlat) { document.body.classList.add("flat-on"); $("#flat").hidden = false; renderFlat(); }
-  else { sceneReady = true; initScene(); }
+  $("#quick").onclick = () => setFlat(true); $("#tqv").onclick = () => setFlat(true);
+  let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (isMobile() !== MOBILE && !S.flat) location.reload(); }, 250); });
+  if (S.flat === true) { document.body.classList.add("flat-on"); $("#flat").hidden = false; renderFlat(); }
+  else startUI();
   applySettings();
   const done = () => setTimeout(() => $("#loader").classList.add("done"), 250);
   document.readyState === "complete" ? done() : addEventListener("load", done);
