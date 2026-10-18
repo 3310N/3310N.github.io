@@ -258,3 +258,10 @@ body.mobile #tqv{display:flex!important}
 body.mobile.has-win #quick{display:none}
 .avatar{overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover;display:block}
 #flat .me{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-top:24px;box-shadow:0 8px 24px #0008,0 0 0 2px #fff3}
+.wprof{display:none}
+body.mobile .wprof{display:flex;gap:14px;align-items:center}
+.wprof img{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(255,255,255,.35),0 6px 16px #0006;flex:none}
+.wprof b{display:block;font-size:17px}.wprof span{color:#d6dbec;font-size:13px}
+body.mobile #widgets{gap:10px}
+body.mobile .wclock{padding:10px 16px}body.mobile .wclock b{font-size:30px}
+body.mobile #icons{top:250px;bottom:64px;overflow-y:auto;align-content:start}

@@ -445,6 +445,7 @@
   let sceneReady = false;
 
   /* ================= start ================= */
+  $("#wpname").textContent = C.profile.name; $("#wprole").textContent = C.profile.title; $("#wpimg").alt = "Portrait of " + C.profile.name;
   buildDesktop(); buildChrome(); tick(); setInterval(tick, 20000);
   $("#quick").onclick = () => setFlat(true); $("#tqv").onclick = () => setFlat(true);
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (isMobile() !== MOBILE && !S.flat) location.reload(); }, 250); });
