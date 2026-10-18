@@ -81,7 +81,7 @@
   /* ---------- app bodies ---------- */
   function aboutHTML() {
     const p = C.profile;
-    return `<div class="hero"><div class="avatar">M</div><div><h2 style="margin:0">${esc(p.name)}</h2><p style="margin:2px 0 0">${esc(p.title)} · ${esc(p.location)}</p></div></div>
+    return `<div class="hero"><div class="avatar"><img src="assets/me.jpg" alt="Portrait of ${esc(p.name)}" width="84" height="84"></div><div><h2 style="margin:0">${esc(p.name)}</h2><p style="margin:2px 0 0">${esc(p.title)} · ${esc(p.location)}</p></div></div>
       <p>${esc(p.summary)}</p><div class="chips">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
       <h3>Timeline</h3><div class="tl">${p.timeline.map(t => `<div class="it"><div class="yr">${esc(t.year)}</div>${esc(t.text)}</div>`).join("")}</div>
       <h3>Education</h3>${p.education.map(e => `<div class="row"><b>${esc(e.school)}</b> · ${esc(e.years)}<br>${esc(e.degree)}</div>`).join("")}
@@ -430,7 +430,7 @@
   function renderFlat() {
     const p = C.profile, f = $("#flat");
     f.innerHTML = `<div class="wrap"><header><strong>mehdimasbah.me</strong><nav><a href="#f-projects">Projects</a><a href="#f-exp">Experience</a><a href="#f-skills">Skills</a><a href="#f-contact">Contact</a> <button class="btn" id="to3d">Open 3D desktop</button></nav></header>
-      <h1>${esc(p.name)}</h1><p style="font-size:1.15rem">${esc(p.title)} · ${esc(p.location)}</p><p>${esc(p.summary)}</p><div class="chips">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+      <img class="me" src="assets/me.jpg" alt="Portrait of ${esc(p.name)}" width="120" height="120"><h1>${esc(p.name)}</h1><p style="font-size:1.15rem">${esc(p.title)} · ${esc(p.location)}</p><p>${esc(p.summary)}</p><div class="chips">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
       <h2 id="f-projects">Projects</h2>${C.projects.map(x => `<div class="card"><h3>${esc(x.name)} <span class="badge">${esc(x.status)}</span>${x.verified ? "" : ' <span class="badge">Draft</span>'}</h3><p>${esc(x.summary)}</p><div class="chips">${(x.stack || []).map(s => `<span>${esc(s.name)}</span>`).join("")}</div>${x.links && x.links.demo ? `<a href="${esc(x.links.demo)}" target="_blank" rel="noopener">Demo ↗</a>` : ""}</div>`).join("")}
       <h2 id="f-exp">Experience</h2>${C.experience.map(e => `<div class="card"><h3>${esc(e.role)} — ${esc(e.org)}</h3><p>${esc(e.period)}</p><ul>${e.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}
       <h2>Education & languages</h2>${p.education.map(e => `<p><b>${esc(e.school)}</b> (${esc(e.years)}) — ${esc(e.degree)}</p>`).join("")}<p>${p.languages.map(esc).join(" · ")}</p>
